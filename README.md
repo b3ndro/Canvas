@@ -3,17 +3,20 @@ Canvas
 
 ##Canvas Help File
 
-*Initialize git init*
+**Initialize git init**
+
 git init
 
-*See all files that are under version control*
+**See all files that are under version control**
+
 git status 
 
-*tell git to start tracking all files*
+**tell git to start tracking all files**
+
 git add -A
 
 
 
-*Adding the origin*
+**Adding the origin**
 git remote add origin https://github.com/b3ndro/Canvas.git
 git push -u origin master
