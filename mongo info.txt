@@ -1,0 +1,13 @@
+creating new DB
+
+go to where mongodb files are
+ex. cd d:/websiteresources/mongodb/bin
+
+then run: mongod -f and locate the config files
+ex mongod -f d:/mongodb/data/mongod.config
+
+make mongo server run all the time
+
+mongod -f d:\mongodb\data\mongod.config --install
+
+run with: net start mongodb
