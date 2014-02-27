@@ -21,8 +21,12 @@ app.configure(function() {
     //));
     app.use(express.static(__dirname + '/public'));
 });
+if(env === 'development'){
+    mongoose.connect('mongodb://localhost/canvas');
+}else {
+    mongoose.connect('mongodb://b3ndro_db:canvas@ds033699.mongolab.com:33699/canvas');
+}
 
-mongoose.connect('mongodb://localhost/canvas');
 var db = mongoose.connection;
 db.on('error',console.error.bind(console,'connection error...'));
 db.once('open', function callback(){
@@ -34,7 +38,7 @@ var message = mongoose.model('Message', messageSchema);
 var mongoMessage;
 message.findOne().exec(function(err, messageDoc){
     mongoMessage = messageDoc.message;
-})
+});
 
 //app.get('/partials/:partialPath', function(reg, res){
 //    res.render('partials/' + reg.params.partialPath);
@@ -46,7 +50,7 @@ app.get('*', function(req,res){
     });
 });
 
-var port = 3030;
+var port = process.env.PORT || 3030;
 app.listen(port);
 
 console.log('listening on port' + port +'...');
