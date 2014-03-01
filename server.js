@@ -1,4 +1,4 @@
-var express = require('express');
+var express = require('express'),
     mongoose = require('mongoose');
 
 var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';

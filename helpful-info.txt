@@ -1,0 +1,30 @@
+connect to db via mongolab
+
+mongo ds033699.mongolab.com:33699/canvas -u b3ndro_db -p canvas
+
+login to heroku - 
+heroku login
+
+config env -
+heroku config:set NODE_ENV=production
+
+pushing from git to heroku - 
+git push heroku master
+
+git push heroku
+
+alocate resources
+heroku ps:scale web=1
+
+open the app in browser
+heroku open
+
+check logs - 
+heroku logs
+
+restart heroku - 
+heroku restart
+
+add keys to heroku -
+heroku keys:add
+

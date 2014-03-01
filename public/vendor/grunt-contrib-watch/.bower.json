@@ -1,0 +1,15 @@
+{
+  "name": "grunt-contrib-watch",
+  "homepage": "https://github.com/gruntjs/grunt-contrib-watch",
+  "version": "0.5.3",
+  "_release": "0.5.3",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.5.3",
+    "commit": "1012d14d3b4880f631b473e6197dd99e84a395a6"
+  },
+  "_source": "git://github.com/gruntjs/grunt-contrib-watch.git",
+  "_target": "~0.5.3",
+  "_originalSource": "grunt-contrib-watch",
+  "_direct": true
+}
