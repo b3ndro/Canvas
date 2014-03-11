@@ -25,26 +25,27 @@ module.exports = function(grunt) {
                         PORT: '3030'
                     },
                     cwd: __dirname,
-                    ignore: ['node_modules/**'],
-                    ext: 'js,scss',
                     watch: ['server','public'],
-                    delay: 1,
-                    legacyWatch: true
-
+                    delay: 1
                 },
-                callback: function(nodemon){nodemon.on('config:update', function () {
+                callback: function (nodemon) {
+                    nodemon.on('log', function (event) {
+                        console.log(event.colour);
+                    });
+
+                nodemon.on('config:update', function () {
                     // Delay before server listens on port
                     setTimeout(function() {
                         require('open')('http://localhost:3030');
                     }, 1000);
                 });
-                    // refreshes browser when server reboots
-                    /*nodemon.on('restart', function () {
+                // refreshes browser when server reboots
+                nodemon.on('restart', function () {
                         // Delay before server listens on port
                         setTimeout(function() {
                             require('fs').writeFileSync('.rebooted', 'rebooted');
                         }, 1000);
-                });*/
+                    });
                 }
             }
         },
@@ -52,6 +53,12 @@ module.exports = function(grunt) {
             source: {
                 files: '**/*.scss',
                 tasks: ['sass']
+            },
+            server: {
+                files: ['.rebooted'],
+                options: {
+                    livereload: true
+                }
             }
         }
     });
