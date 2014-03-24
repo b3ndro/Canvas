@@ -272,7 +272,7 @@ exports['file.expandMapping'] = {
     test.done();
   },
   'ext': function(test) {
-    test.expect(2);
+    test.expect(3);
     var actual, expected;
     actual = grunt.file.expandMapping(['expand/**/*.txt'], 'dest', {ext: '.foo'});
     expected = [
@@ -288,6 +288,35 @@ exports['file.expandMapping'] = {
       {dest: 'dest/expand-mapping-ext/file.foo', src: ['expand-mapping-ext/file.ext.ension']},
     ];
     test.deepEqual(actual, expected, 'specified extension should be added');
+    actual = grunt.file.expandMapping(['expand/**/*.txt'], 'dest', {ext: ''});
+    expected = [
+      {dest: 'dest/expand/deep/deep', src: ['expand/deep/deep.txt']},
+      {dest: 'dest/expand/deep/deeper/deeper', src: ['expand/deep/deeper/deeper.txt']},
+      {dest: 'dest/expand/deep/deeper/deepest/deepest', src: ['expand/deep/deeper/deepest/deepest.txt']},
+    ];
+    test.deepEqual(actual, expected, 'empty string extension should be added');
+    test.done();
+  },
+  'extDot': function(test) {
+    test.expect(2);
+    var actual, expected;
+
+    actual = grunt.file.expandMapping(['expand-mapping-ext/**/file*'], 'dest', {ext: '.foo', extDot: 'first'});
+    expected = [
+      {dest: 'dest/expand-mapping-ext/dir.ectory/file-no-extension.foo', src: ['expand-mapping-ext/dir.ectory/file-no-extension']},
+      {dest: 'dest/expand-mapping-ext/dir.ectory/sub.dir.ectory/file.foo', src: ['expand-mapping-ext/dir.ectory/sub.dir.ectory/file.ext.ension']},
+      {dest: 'dest/expand-mapping-ext/file.foo', src: ['expand-mapping-ext/file.ext.ension']},
+    ];
+    test.deepEqual(actual, expected, 'extDot of "first" should replace everything after the first dot in the filename.');
+
+    actual = grunt.file.expandMapping(['expand-mapping-ext/**/file*'], 'dest', {ext: '.foo', extDot: 'last'});
+    expected = [
+      {dest: 'dest/expand-mapping-ext/dir.ectory/file-no-extension.foo', src: ['expand-mapping-ext/dir.ectory/file-no-extension']},
+      {dest: 'dest/expand-mapping-ext/dir.ectory/sub.dir.ectory/file.ext.foo', src: ['expand-mapping-ext/dir.ectory/sub.dir.ectory/file.ext.ension']},
+      {dest: 'dest/expand-mapping-ext/file.ext.foo', src: ['expand-mapping-ext/file.ext.ension']},
+    ];
+    test.deepEqual(actual, expected, 'extDot of "last" should replace everything after the last dot in the filename.');
+
     test.done();
   },
   'cwd': function(test) {

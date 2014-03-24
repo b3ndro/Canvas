@@ -1,15 +1,14 @@
 {
   "name": "node-sass",
   "homepage": "https://github.com/andrew/node-sass",
-  "version": "0.8.1",
-  "_release": "0.8.1",
+  "version": "0.8.3",
+  "_release": "0.8.3",
   "_resolution": {
     "type": "version",
-    "tag": "v0.8.1",
-    "commit": "a1aec532225ec8bf28c769e119737ed744e376a6"
+    "tag": "v0.8.3",
+    "commit": "6606d3df40404388168fe6bf4de6641efe382ff8"
   },
   "_source": "git://github.com/andrew/node-sass.git",
   "_target": "~0.8.1",
-  "_originalSource": "node-sass",
-  "_direct": true
+  "_originalSource": "node-sass"
 }

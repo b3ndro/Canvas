@@ -1,15 +1,14 @@
 {
   "name": "grunt",
   "homepage": "https://github.com/gruntjs/grunt",
-  "version": "0.4.2",
-  "_release": "0.4.2",
+  "version": "0.4.4",
+  "_release": "0.4.4",
   "_resolution": {
     "type": "version",
-    "tag": "v0.4.2",
-    "commit": "5ab7a3ed6885fdbf4b458d72d65d488cf9eedf48"
+    "tag": "v0.4.4",
+    "commit": "bfc869e0551992e3418a498920c49646a425ea76"
   },
   "_source": "git://github.com/gruntjs/grunt.git",
   "_target": "~0.4.2",
-  "_originalSource": "grunt",
-  "_direct": true
+  "_originalSource": "grunt"
 }
