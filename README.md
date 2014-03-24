@@ -40,7 +40,7 @@ install mongodb to folder D:\websiteResources\mongodb\
 create mongodb in another folder D:\websiteResources\mongodb\ --> mongod --dbpath D:\mongoDB\data
 create config file for mongodb 
 install mongodb as service
-mongod -f D:\mongodb\mongod.conf --isntall
+mongod -f D:\mongodb\mongod.conf --install
 now can run mongodb as service with "net start mongodb"
 add the mongo directory to the system path variable
 

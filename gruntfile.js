@@ -1,6 +1,4 @@
-
-
-module.exports = function(grunt) {
+module.exports = function (grunt) {
     grunt.initConfig({
         sass: {
             dist: {
@@ -11,7 +9,7 @@ module.exports = function(grunt) {
         },
         concurrent: {
             dev: {
-                tasks: ['nodemon','watch'],
+                tasks: ['nodemon', 'watch', 'open' ],
                 options: {
                     logConcurrentOutput: true
                 }
@@ -21,45 +19,62 @@ module.exports = function(grunt) {
             dev: {
                 script: 'server.js',
                 options: {
+                    nodeArgs: ['--debug'],
                     env: {
                         PORT: '3030'
                     },
-                    cwd: __dirname,
-                    watch: ['server','public'],
-                    delay: 1
-                },
-                callback: function (nodemon) {
-                    nodemon.on('log', function (event) {
-                        console.log(event.colour);
-                    });
+                    callback: function (nodemon) {
+                        nodemon.on('log', function (event) {
+                            console.log(event.colour);
+                        });
 
-                nodemon.on('config:update', function () {
-                    // Delay before server listens on port
-                    setTimeout(function() {
-                        require('open')('http://localhost:3030');
-                    }, 1000);
-                });
-                // refreshes browser when server reboots
-                nodemon.on('restart', function () {
-                        // Delay before server listens on port
-                        setTimeout(function() {
-                            require('fs').writeFileSync('.rebooted', 'rebooted');
-                        }, 1000);
-                    });
+                        // opens browser on initial server start
+                        nodemon.on('config:update', function () {
+                            // Delay before server listens on port
+                            setTimeout(function () {
+                                grunt.log.writeln('Server started');
+                            }, 1000);
+                        });
+
+                        // refreshes browser when server reboots
+                        nodemon.on('restart', function () {
+                            // Delay before server listens on port
+                            setTimeout(function () {
+                                require('fs').writeFileSync('.rebooted', 'rebooted');
+                            }, 1000);
+                        });
+                    }
                 }
             }
         },
+        open: {
+            dev: {
+                path: 'http://localhost:3030'
+            }
+        },
         watch: {
-            source: {
+            scss: {
                 files: '**/*.scss',
-                tasks: ['sass']
-            },
-            server: {
-                files: ['.rebooted'],
+                tasks: ['sass'],
                 options: {
+                    reload: true,
+                    livereload: true
+                }
+            },
+            publicFiles: {
+                files: ['public/**/*'],
+                options: {
+                    reload: true,
                     livereload: true
                 }
             }
+//            serverFiles: {
+//                files: ['server/**/*'],
+//                options: {
+//                    reload: true,
+//                    livereload: true
+//                }
+//            }
         }
     });
 
@@ -69,5 +84,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-sass');
     grunt.loadNpmTasks('grunt-concurrent');
     grunt.loadNpmTasks('grunt-open');
+    grunt.loadNpmTasks('grunt-node-inspector');
     grunt.registerTask('default', ['concurrent']);
 };
